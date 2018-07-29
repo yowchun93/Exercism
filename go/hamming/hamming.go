@@ -2,28 +2,21 @@ package hamming
 
 import (
 	"errors"
-	"strings"
 )
 
-// Distance returns is difference in size between 2 DNA strands
+// Distance returns  difference in size between 2 DNA strands
 func Distance(a, b string) (int, error) {
-
-	slice1 := strings.Split(a, "")
-	slice2 := strings.Split(b, "")
-
-	if len(slice1) != len(slice2) {
+	if len(a) != len(b) {
 		return -1, errors.New("dna strands must be of same length")
 	}
-
-	count := difference(slice1, slice2)
-
+	count := difference(a, b)
 	return count, nil
 }
 
-func difference(slice1 []string, slice2 []string) int {
+func difference(a string, b string) int {
 	diffCount := 0
-	for i := range slice1 {
-		if slice2[i] != slice1[i] {
+	for i := range a {
+		if b[i] != a[i] {
 			diffCount++
 		}
 	}

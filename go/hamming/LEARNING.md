@@ -19,3 +19,12 @@
 
 // 	return len(diffStr)
 // }
+
+Lessons Learned 
+Iterating Slices and Strings 
+https://medium.com/jexia/from-ruby-to-golang-ruby-each-equivalent-in-go-1a78e371c520
+
+Using GoLang range , which allows you to iterate each element in the string.
+
+
+

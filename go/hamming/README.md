@@ -65,3 +65,10 @@ The Calculating Point Mutations problem at Rosalind [http://rosalind.info/proble
 
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.
+
+## Lesson Learned 
+Iterating Slices and Strings 
+https://medium.com/jexia/from-ruby-to-golang-ruby-each-equivalent-in-go-1a78e371c520
+
+Using GoLang range , which allows you to iterate each element in the string.
+
