@@ -2,16 +2,19 @@ package raindrops
 
 import "strconv"
 
+var translations = map[int]string{
+	3: "Pling",
+	5: "Plang",
+	7: "Plong",
+}
+
+// Convert converts a number to string, depending on the numbers factor
 func Convert(number int) string {
 	output := ""
-	if number%3 == 0 {
-		output += "Pling"
-	}
-	if number%5 == 0 {
-		output += "Plang"
-	}
-	if number%7 == 0 {
-		output += "Plong"
+	for key, value := range translation {
+		if number%key == 0 {
+			output += value
+		}
 	}
 	if output == "" {
 		output += strconv.Itoa(number)

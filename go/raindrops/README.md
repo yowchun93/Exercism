@@ -55,4 +55,8 @@ It's possible to submit an incomplete solution so you can see how others have co
 
 ## Lessons Learned 
 GoLang Division
-GoLang Conversion
+GoLang Map Initialization, Golang Map Literals 
+https://tour.golang.org/moretypes/20
+
+GoLang Map Iteration 
+https://stackoverflow.com/questions/1841443/iterating-over-all-the-keys-of-a-map
