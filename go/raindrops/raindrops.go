@@ -11,7 +11,7 @@ var translations = map[int]string{
 // Convert converts a number to string, depending on the numbers factor
 func Convert(number int) string {
 	output := ""
-	for key, value := range translation {
+	for key, value := range translations {
 		if number%key == 0 {
 			output += value
 		}
