@@ -2,6 +2,10 @@
 
 Given a word, compute the scrabble score for that word.
 
+## Lesson Learned 
+Understanding the difference between and rune and string 
+String iteration, returns rune in each iteration
+
 ## Letter Values
 
 You'll need these:
