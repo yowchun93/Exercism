@@ -12,13 +12,12 @@ var scrabble = map[string]int{
 	"q": 10, "z": 10,
 }
 
-/*Score determines the value of a scrabble word*/
+// Score determines the value of a scrabble word
 func Score(sentence string) int {
 	var finalScore int
-	for _, a := range sentence {
-		key := strings.ToLower(string(a))
-		score := scrabble[key]
-		finalScore += score
+	for _, char := range sentence {
+		key := strings.ToLower(string(char))
+		finalScore += scrabble[key]
 	}
 	return finalScore
 }
