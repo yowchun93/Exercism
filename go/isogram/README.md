@@ -13,6 +13,13 @@ Examples of isograms:
 
 The word *isograms*, however, is not an isogram, because the s repeats.
 
+## Lessons 
+Checking if a Map contains a Key , very elegant solution!
+https://stackoverflow.com/questions/2050391/how-to-check-if-a-map-contains-a-key-in-go
+Go Assignment to Nil entry in Map. 
+https://stackoverflow.com/questions/35379378/go-assignment-to-entry-in-nil-map
+
+
 ## Running the tests
 
 To run the tests run the command `go test` from within the exercise directory.
