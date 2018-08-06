@@ -1,6 +1,7 @@
 package isogram
 
 import (
+	"strings"
 	"unicode"
 )
 
@@ -8,13 +9,12 @@ import (
 // ignoring non alphabets
 func IsIsogram(input string) bool {
 	wordExists := make(map[rune]bool)
-	for _, char := range input {
-		lowerChar := unicode.ToLower(char)
-		if unicode.IsLetter(lowerChar) {
-			if _, present := wordExists[lowerChar]; present {
+	for _, char := range strings.ToLower(input) {
+		if unicode.IsLetter(char) {
+			if _, present := wordExists[char]; present {
 				return false
 			}
-			wordExists[lowerChar] = true
+			wordExists[char] = true
 		}
 	}
 	return true
