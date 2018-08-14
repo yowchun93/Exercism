@@ -16,6 +16,12 @@ Strings of length 1 or less are not valid. Spaces are allowed in the input,
 but they should be stripped before checking. All other non-digit characters
 are disallowed.
 
+## Lessons Learned 
+1. Iterating string / slices in a reverse order 
+https://stackoverflow.com/questions/13190836/is-there-a-way-to-iterate-over-a-slice-in-reverse-in-go
+2. Reversing a string 
+https://stackoverflow.com/questions/1752414/how-to-reverse-a-string-in-go
+
 ## Example 1: valid credit card number
 
 ```text
