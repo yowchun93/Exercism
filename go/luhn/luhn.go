@@ -1,50 +1,61 @@
 package luhn
 
 import (
-	"fmt"
 	"strconv"
+	"strings"
 	"unicode"
 )
 
 //Valid describes where an input is valid according to Luhn formula
 func Valid(input string) bool {
-	input = normalize(input)
-	if len(input) < 2 {
+	parsedInput := strings.Replace(input, " ", "", -1)
+
+	if !isValidNumber(parsedInput) {
 		return false
 	}
-	sum := sum(input)
-	if sum%10 == 0 {
+
+	// boolean initialized to false
+	var (
+		sum              int
+		shouldDoubleNext bool
+		currentDigit     int
+	)
+
+	// iterate backwards
+	for i := len(parsedInput) - 1; i >= 0; i-- {
+		// convert to int
+		currentDigit, _ = strconv.Atoi(string(parsedInput[i]))
+
+		if shouldDoubleNext {
+			currentDigit = doubleDigit(currentDigit)
+		}
+		// add the result to the sum
+		sum += currentDigit
+		shouldDoubleNext = !shouldDoubleNext
+	}
+	return sum%10 == 0
+}
+
+func isValidNumber(input string) bool {
+	if len(input) > 1 && !containNonDigit(input) {
 		return true
 	}
 	return false
 }
 
-func normalize(input string) string {
-	var normalized string
-	for _, i := range input {
-		if unicode.IsNumber(i) {
-			normalized += string(i)
+func containNonDigit(input string) bool {
+	for _, c := range input {
+		if !unicode.IsDigit(c) {
+			return true
 		}
 	}
-	return normalized
+	return false
 }
 
-func sum(input string) int {
-	numDigits := 0
-	sum := 0
-	for i := len(input) - 1; 0 <= i; i-- {
-		digit, _ := strconv.Atoi(string(input[i]))
-		if numDigits%2 == 0 {
-			digit = digit * 2
-			if digit >= 9 {
-				digit -= 9
-			}
-			sum += digit
-		} else {
-			sum += digit
-		}
-		numDigits++
+func doubleDigit(input int) int {
+	result := input * 2
+	if result > 9 {
+		result -= 9
 	}
-	fmt.Println(sum)
-	return sum
+	return result
 }
