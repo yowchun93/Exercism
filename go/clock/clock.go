@@ -3,7 +3,8 @@ package clock
 import "fmt"
 
 const (
-	hour = 60
+	hour          = 60
+	minutesPerDay = 24 * hour
 )
 
 type Clock struct {
@@ -11,19 +12,26 @@ type Clock struct {
 }
 
 // New creates a brand new Clock
+// func New(hours int, minutes int) Clock {
+// 	return Clock{(minutes + (hours * hour))}
+// }
+
 func New(hours int, minutes int) Clock {
-	return Clock{(minutes + (hours * minutes_in_hour))}
+	m := (hours*hour + minutes) % minutesPerDay
+	return Clock{m}
 }
 
-func (clock Clock) String() string {
-	// fmt.Println(clock)
-	return fmt.Sprintf("%02d:%02d", clock.minutes/hour, clock.minutes%hour)
-}
+// func (clock Clock) String() string {
+// 	return fmt.Sprintf("%02d:%02d", clock.minutes/hour, clock.minutes%hour)
+// }
 
-func (clock Clock) Add() {
-
+func (c Clock) String() string {
+	m := c.minutes
+	h := m / hour
+	return fmt.Sprintf("%02d:%02d", h, m)
 }
 
 // func (clock Clock) Add(minutes int) Clock {
-// 	clock = (clock + Clock(minutes))
+// 	clock = Clock((int(clock) + day + minutes%day) % day)
+// 	return clock
 // }
