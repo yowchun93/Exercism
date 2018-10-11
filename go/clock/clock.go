@@ -4,34 +4,29 @@ import "fmt"
 
 const (
 	hour          = 60
-	minutesPerDay = 24 * hour
+	minutesPerDay = 24 * 60
 )
 
-type Clock struct {
-	minutes int
-}
+// Clock representation
+type Clock int
 
-// New creates a brand new Clock
-// func New(hours int, minutes int) Clock {
-// 	return Clock{(minutes + (hours * hour))}
-// }
-
+//  divide by 1440, so you get the remainder of how many minutes is left
+// left case where hours is negative, should default to 00:00
 func New(hours int, minutes int) Clock {
-	m := (hours*hour + minutes) % minutesPerDay
-	return Clock{m}
+	remainder := (hours*hour + minutes) % 1440
+	return Clock(remainder)
 }
 
-// func (clock Clock) String() string {
-// 	return fmt.Sprintf("%02d:%02d", clock.minutes/hour, clock.minutes%hour)
-// }
-
-func (c Clock) String() string {
-	m := c.minutes
-	h := m / hour
-	return fmt.Sprintf("%02d:%02d", h, m)
+func (clock Clock) String() string {
+	return fmt.Sprintf("%02d:%02d", clock/hour, clock%hour)
 }
 
-// func (clock Clock) Add(minutes int) Clock {
-// 	clock = Clock((int(clock) + day + minutes%day) % day)
-// 	return clock
-// }
+// Adds minutes to Clock
+func (clock Clock) Add(minutes int) Clock {
+	return Clock((int(clock) + minutes) % 1440)
+}
+
+// Adds minutes to Clock
+func (clock Clock) Subtract(minutes int) Clock {
+	return Clock((int(clock) - minutes) % 1440)
+}
