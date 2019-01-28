@@ -7,6 +7,7 @@ defmodule Words do
   @spec count(String.t()) :: map
   def count(sentence) do
     sentence
+    |> String.downcase
     |> String.split(~r/[^\p{L}\d-]/u, trim: true)
     |> count(%{})
   end
