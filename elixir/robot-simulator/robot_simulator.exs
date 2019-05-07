@@ -9,14 +9,23 @@ defmodule RobotSimulator do
   defstruct direction: :north, position: {0,0}
 
   @spec create(direction :: atom, position :: {integer, integer}) :: any
-  def create(direction \\ :north, position \\ {0,0})
-    when direction in [:north, :east, :south, :west] do
+
+  def create(direction \\ :north, pos \\ {0,0})
+
+  def create(direction, position={x,y})
+    when direction in [:north, :east, :south, :west]
+    and is_integer(x) and is_integer(y) do
     %RobotSimulator{direction: direction, position: position}
+  end
+
+  # https://hexdocs.pm/elixir/master/guards.html
+  def create(_, {x,y}) when is_integer(x) and is_integer(y) do
+    {:error, "invalid direction"}
   end
 
   # when direction not in [:north, :east, :south, :west]
   def create(_, _) do
-    {:error, "invalid direction"}
+    {:error, "invalid position"}
   end
 
   @doc """

@@ -41,7 +41,6 @@ defmodule RobotSimulatorTest do
     assert RobotSimulator.create("east", position) == invalid_direction
   end
 
-  @tag :pending
   test "create errors if invalid position given" do
     direction = :north
     invalid_position = {:error, "invalid position"}
