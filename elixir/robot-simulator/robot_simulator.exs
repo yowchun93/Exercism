@@ -63,6 +63,7 @@ defmodule RobotSimulator do
 
   def move_robot(robot = %RobotSimulator{direction: :west, position: {x, y} }, ["L"|t]) do
     new_robot = %RobotSimulator{direction: :south, position: robot.position}
+    move_robot(new_robot, t)
   end
   ##
 
@@ -74,6 +75,7 @@ defmodule RobotSimulator do
 
   def move_robot(robot = %RobotSimulator{direction: :south, position: {x, y} }, ["L"|t]) do
     new_robot = %RobotSimulator{direction: :east, position: robot.position}
+    move_robot(new_robot, t)
   end
   ##
 
@@ -106,6 +108,10 @@ defmodule RobotSimulator do
   def move_robot(robot = %RobotSimulator{direction: :west, position: {x, y} }, [h|t]) when h == "A" do
     new_robot = %RobotSimulator{direction: robot.direction, position: {x-1, y}}
     move_robot(new_robot, t)
+  end
+
+  def move_robot(_, _) do
+    {:error, "invalid instruction"}
   end
 
 
