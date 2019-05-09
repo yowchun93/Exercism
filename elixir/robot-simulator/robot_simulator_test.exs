@@ -55,11 +55,25 @@ defmodule RobotSimulatorTest do
     assert RobotSimulator.create(direction, nil) == invalid_position
   end
 
-  test "simulate robots testing" do
-    robot = RobotSimulator.create(:north, {0,0}) |> RobotSimulator.simulate("RAA")
-  end
+  # test "simulate robot moving R from starting" do
+  #   robot = RobotSimulator.create(:north, {0,0}) |> RobotSimulator.simulate("RAA")
+  #   assert RobotSimulator.direction(robot) == :east
+  #   assert RobotSimulator.position(robot) == {2,0}
+  # end
 
-  @tag :pending
+  # test "simulate robot moving L from starting" do
+  #   robot = RobotSimulator.create(:north, {0,0}) |> RobotSimulator.simulate("LAA")
+  #   assert RobotSimulator.direction(robot) == :west
+  #   assert RobotSimulator.position(robot) == {-2,0}
+  # end
+
+  # test "simulate robot moving from starting" do
+  #   robot = RobotSimulator.create(:north, {0,0}) |> RobotSimulator.simulate("AA")
+  #   assert RobotSimulator.direction(robot) == :north
+  #   assert RobotSimulator.position(robot) == {0,2}
+  # end
+
+
   test "simulate robots" do
     robot1 = RobotSimulator.create(:north, {0, 0}) |> RobotSimulator.simulate("LAAARALA")
     assert RobotSimulator.direction(robot1) == :west

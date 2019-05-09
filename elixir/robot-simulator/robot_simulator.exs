@@ -35,7 +35,79 @@ defmodule RobotSimulator do
   """
   @spec simulate(robot :: any, instructions :: String.t()) :: any
   def simulate(robot, instructions) do
+    instruction_list = String.graphemes(instructions)
+    robot = move_robot(robot, instruction_list)
   end
+
+  def move_robot(robot, []) do
+    robot
+  end
+
+  ## When robot is in north
+  def move_robot(robot = %RobotSimulator{direction: :north, position: {x, y} }, ["R"|t]) do
+    new_robot = %RobotSimulator{direction: :east, position: robot.position}
+    move_robot(new_robot, t)
+  end
+
+  def move_robot(robot = %RobotSimulator{direction: :north, position: {x, y} }, ["L"|t]) do
+    new_robot = %RobotSimulator{direction: :west, position: robot.position}
+    move_robot(new_robot, t)
+  end
+  ##
+
+  ## When robot is in west
+  def move_robot(robot = %RobotSimulator{direction: :west, position: {x, y} }, ["R"|t]) do
+    new_robot = %RobotSimulator{direction: :north, position: robot.position}
+    move_robot(new_robot, t)
+  end
+
+  def move_robot(robot = %RobotSimulator{direction: :west, position: {x, y} }, ["L"|t]) do
+    new_robot = %RobotSimulator{direction: :south, position: robot.position}
+  end
+  ##
+
+  ## When robot is in south
+  def move_robot(robot = %RobotSimulator{direction: :south, position: {x, y} }, ["R"|t]) do
+    new_robot = %RobotSimulator{direction: :west, position: robot.position}
+    move_robot(new_robot, t)
+  end
+
+  def move_robot(robot = %RobotSimulator{direction: :south, position: {x, y} }, ["L"|t]) do
+    new_robot = %RobotSimulator{direction: :east, position: robot.position}
+  end
+  ##
+
+  ## When robot is in east
+  def move_robot(robot = %RobotSimulator{direction: :east, position: {x, y} }, ["R"|t]) do
+    new_robot = %RobotSimulator{direction: :south, position: robot.position}
+    move_robot(new_robot, t)
+  end
+
+  def move_robot(robot = %RobotSimulator{direction: :east, position: {x, y} }, ["L"|t]) do
+    new_robot = %RobotSimulator{direction: :north, position: robot.position}
+  end
+  ##
+
+  def move_robot(robot = %RobotSimulator{direction: :north, position: {x, y} }, [h|t]) when h == "A" do
+    new_robot = %RobotSimulator{direction: robot.direction, position: {x, y+1}}
+    move_robot(new_robot, t)
+  end
+
+  def move_robot(robot = %RobotSimulator{direction: :south, position: {x, y} }, [h|t]) when h == "A" do
+    new_robot = %RobotSimulator{direction: robot.direction, position: {x, y-1}}
+    move_robot(new_robot, t)
+  end
+
+  def move_robot(robot = %RobotSimulator{direction: :east, position: {x, y} }, [h|t]) when h == "A" do
+    new_robot = %RobotSimulator{direction: robot.direction, position: {x+1, y}}
+    move_robot(new_robot, t)
+  end
+
+  def move_robot(robot = %RobotSimulator{direction: :west, position: {x, y} }, [h|t]) when h == "A" do
+    new_robot = %RobotSimulator{direction: robot.direction, position: {x-1, y}}
+    move_robot(new_robot, t)
+  end
+
 
   @doc """
   Return the robot's direction.
